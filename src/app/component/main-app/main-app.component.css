@@ -1,0 +1,49 @@
+.mainContainer {
+  background-color: #1B263B;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.switchMenu {
+  flex-direction: column;
+  flex: none;
+  display: none;
+}
+
+.navBar {
+  flex: 1;
+  background-color: #989fbb;
+  transition: 0.2s;
+}
+
+.labelCheckbox {
+  float: right;
+  padding: 20px 35px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.switchMenu:checked ~ .labelCheckbox{
+  rotate: 50grad;
+}
+
+.switchMenu:checked ~ .navBar {
+  transition: 0.2s;
+  flex: 0.2;
+}
+
+.titleList {
+  margin-top: 8vh;
+  margin-left: 25px;
+}
+
+.titleTag {
+  margin-top: 6vh;
+  margin-left: 25px;
+
+}
+
+.main {
+  flex: 6;
+}

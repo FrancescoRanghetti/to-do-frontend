@@ -1,0 +1,27 @@
+<div class="containerCard">
+  <div class="wrapper">
+    <div class="card-switch">
+      <label class="switch">
+        <input class="toggle" type="checkbox">
+        <span class="slider"></span>
+        <span class="card-side"></span>
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="title">Log in</div>
+            <input type="text" placeholder="Username" name="username" class="flip-card__input" [(ngModel)]="usernameLogin">
+            <input type="password" placeholder="Password" name="password" class="flip-card__input" [(ngModel)]="passwordLogin">
+            <button class="flip-card__btn" (click)="loginUser()">Let`s go!</button>
+          </div>
+          <div class="flip-card__back">
+            <div class="title">Sign up</div>
+            <input type="text" placeholder="Name" class="flip-card__input" [(ngModel)]="nameSign" name="nameSign">
+            <input type="text" placeholder="Last name" name="lastName" class="flip-card__input" [(ngModel)]="lastNameSign">
+            <input type="text" placeholder="Username" name="username" class="flip-card__input" [(ngModel)]="usernameSign">
+            <input type="password" placeholder="Password" name="password" class="flip-card__input" [(ngModel)]="passwordSign">
+            <button class="flip-card__btn" (click)="registerUser()">Confirm!</button>
+          </div>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>
