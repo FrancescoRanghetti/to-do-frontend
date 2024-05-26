@@ -3,21 +3,90 @@
   <div class="navBar">
     <label class="labelCheckbox" for="menuToggle">⬅</label>
     <h3 class="titleList">List</h3>
-    <ul>
-      <li>lavoto</li>
-      <li>casa</li>
-      <li>scuola</li>
+    <ul *ngFor="let list of listArray">
+      <!--      <li>-->
+      <button class="cta">
+        <span (click)="updateListNameLocal(list.name)">{{list.name}}</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+      <!--      </li>-->
+
+      <!--      <li><a (click)="updateListNameLocal(list.name)">{{list.name}}</a></li>-->
     </ul>
+    <a (click)="seePopUpAddList()" class="addListButton">+</a>
+    <div *ngIf="seeAddList">
+<!--      <div *ngIf="true">-->
+      <app-pop-up-add-list [item]="seeAddList" (newItemEvent)="updateChildAddList()"/>
+    </div>
     <h3 class="titleTag">Tag</h3>
-<!--    <ul>-->
-<!--      tag-->
-<!--      <li>lavoto</li>-->
-<!--      <li>casa</li>-->
-<!--      <li>scuola</li>-->
-<!--    </ul>-->
-    <a>logout</a>
+    <ul *ngFor="let tag of tagArray">
+      <!--      <li>-->
+      <button class="cta">
+        <span>{{tag.name}}</span>
+        <svg width="15px" height="10px" viewBox="0 0 13 10">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </button>
+
+
+      <!--        <a>{{tag.name}}</a>-->
+      <!--      </li>-->
+    </ul>
+    <a (click)="seePopUpAddTag()" class="addTagButton">+</a>
+    <div *ngIf="seeAddTag">
+      <!--      <div *ngIf="true">-->
+      <app-pop-up-add-tag [item]="seeAddTag" (newItemEvent)="updateChildAddTag()"/>
+    </div>
+
+
+
+    <br>
+    <a [routerLink]="['/welcome']" class="logout">logout</a>
   </div>
   <div class="main">
-    <!-- Contenuto principale -->
+    <h1 class="listName">{{listName}}<img (click)="deleteList(listName)" class="imgTrashH1" src="assets/imageTrash.png" alt="image trash"></h1>
+
+    <div class="bodyMain">
+      <div class="newTask">
+        <div *ngIf="taskNotCompletedArray.length === 0">
+          Non ci sono task completati.
+        </div>
+        <div *ngFor="let taskNotCompleted of taskNotCompletedArray">
+          <input type="checkbox" class="checkboxTask" (click)="markTask(taskNotCompleted.id)">
+          <a (click)="toggleDetails(taskNotCompleted, taskNotCompleted.id)">{{taskNotCompleted.name}}</a>
+          <img class="imgTrash" src="assets/imageTrash.png" alt="image trash">
+          <div *ngIf="showDetails && id == taskNotCompleted.id" class="dettagli">
+            <a>Descrizione: {{ taskNotCompleted.description }}</a>
+            <br>
+            <a>Tag: {{ getNameTagById(taskNotCompleted.idTag) }}</a>
+          </div>
+        </div>
+        <br>
+        <a (click)="seePopUpAddTask()" class="addTaskButton">+ Add a new task</a>
+        <div *ngIf="seeAddTask">
+          <app-pop-up-add-task [item]="seeAddTask" (newItemEvent)="updateChildAddTask()"/>
+<!--          <app-pop-up-add-task/>-->
+        </div>
+      </div>
+      <div class="taskCompleted">
+        <div *ngIf="taskCompletedArray.length === 0">
+          Non ci sono task completati.
+        </div>
+        <div *ngFor="let taskCompleted of taskCompletedArray">
+          <input type="checkbox" class="checkboxTask" checked (click)="unmarkTask(taskCompleted.id)">
+          <a (click)="toggleDetails(taskCompleted, taskCompleted.id)">{{taskCompleted.name}}</a>
+          <img class="imgTrash" src="assets/imageTrash.png" alt="image trash">
+          <div *ngIf="showDetails && id == taskCompleted.id" class="dettagli">
+            <a>Descrizione: {{ taskCompleted.description }}</a>
+            <br>
+            <a>Tag: {{ getNameTagById(taskCompleted.idTag) }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

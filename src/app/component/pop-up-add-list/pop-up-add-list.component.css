@@ -1,0 +1,58 @@
+.containerPopUpList {
+  border: 1px solid black;
+  position: absolute;
+  height: 30vh;
+  width: 30%;
+  background-color: #dfdfde;
+  top: 15vw;
+  left: 40vw;
+}
+
+.close {
+  float: right;
+  margin: 20px 20px 0 0;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.divInput {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.inputList {
+  width: 40%;
+  border: none;
+  border-bottom: 1px solid #1B263B;
+  border-left: 1px solid #1B263B;
+  outline: none;
+  padding: 6px;
+  background-color: #dfdfde;
+}
+
+.divButton {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.addList {
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid #1B263B;
+  border-left: 1px solid #1B263B;
+  padding: 6px;
+  transition: 0.2s;
+}
+
+.addList:hover {
+  transition: 0.2s;
+  color: #dfdfde;
+  background-color: #1B263B;
+  border-bottom: 1px solid #dfdfde;
+  border-left: 1px solid #dfdfde;
+  padding: 10px;
+}

@@ -1,0 +1,13 @@
+<div class="containerPopUpTag">
+  <div class="close">
+    <a (click)="close()" >x</a>
+  </div>
+  <h1 class="title">Add tag</h1>
+  <div class="divInput">
+    <input type="text" class="inputTag" [(ngModel)]="nameNewTag">
+  </div>
+  <br>
+  <div class="divButton">
+    <a (click)="addTag()" class="addTag">Add</a>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="containerPopUpList">
+  <div class="close">
+    <a (click)="close()" >x</a>
+  </div>
+  <h1 class="title">Add list</h1>
+  <div class="divInput">
+    <input type="text" class="inputList" [(ngModel)]="nameNewList">
+  </div>
+  <br>
+  <div class="divButton">
+    <a (click)="addList()" class="addList">Add</a>
+  </div>
+</div>

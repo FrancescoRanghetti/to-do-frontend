@@ -13,6 +13,9 @@ import { AuthenticationComponent } from './component/authentication/authenticati
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import { AppMainPageComponent } from './page/app-main-page/app-main-page.component';
+import { PopUpAddTaskComponent } from './component/pop-up-add-task/pop-up-add-task.component';
+import { PopUpAddListComponent } from './component/pop-up-add-list/pop-up-add-list.component';
+import { PopUpAddTagComponent } from './component/pop-up-add-tag/pop-up-add-tag.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { AppMainPageComponent } from './page/app-main-page/app-main-page.compone
     WelcomePageComponent,
     AuthenticationPageComponent,
     AuthenticationComponent,
-    AppMainPageComponent
+    AppMainPageComponent,
+    PopUpAddTaskComponent,
+    PopUpAddListComponent,
+    PopUpAddTagComponent
   ],
   imports: [
     BrowserModule,

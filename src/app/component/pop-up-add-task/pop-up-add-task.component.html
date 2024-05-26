@@ -1,0 +1,26 @@
+<div class="containerPopUpTask">
+  <div class="close">
+    <a (click)="close()">x</a>
+  </div>
+  <h1 class="title">Add task</h1>
+  <div class="divInput">
+    <label>Name</label>
+    <input type="text" class="inputTask" [(ngModel)]="nameNewTask">
+  </div>
+  <div class="divInput">
+    <label>Description</label>
+    <input type="text" class="inputTask" [(ngModel)]="descriptionNewTask">
+  </div>
+  <div class="divInput">
+    <label>Tag</label>
+    <div class="selectWrapper">
+      <select class="selectTask" [(ngModel)]="tagNewTask">
+        <option *ngFor="let tag of tagArray" value="{{tag.id}}">{{tag.name}}</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <div class="divButton">
+    <a (click)="addTask()" class="addTask">Add</a>
+  </div>
+</div>

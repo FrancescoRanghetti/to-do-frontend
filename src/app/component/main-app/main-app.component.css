@@ -1,8 +1,9 @@
 .mainContainer {
   background-color: #1B263B;
-  height: 100vh;
+  /*height: 100vh;*/
   display: flex;
   flex-direction: row;
+  font-size: 12pt;
 }
 
 .switchMenu {
@@ -13,8 +14,17 @@
 
 .navBar {
   flex: 1;
-  background-color: #989fbb;
+  background-color: #dfdfde;
   transition: 0.2s;
+}
+
+.labelCheckbox {
+  display: inline-block;
+  transition: transform 0.3s, content 0.3s;
+}
+
+.switchMenu:checked + .navBar .labelCheckbox {
+  transform: rotate(180deg);
 }
 
 .labelCheckbox {
@@ -22,10 +32,48 @@
   padding: 20px 35px;
   display: inline-block;
   cursor: pointer;
+  font-size: 30pt;
 }
 
-.switchMenu:checked ~ .labelCheckbox{
-  rotate: 50grad;
+.switchMenu:checked + .navBar .titleList,
+.switchMenu:checked + .navBar .titleTag,
+.switchMenu:checked + .navBar ul,
+.switchMenu:checked + .navBar .addListButton,
+.switchMenu:checked + .navBar .addTagButton {
+  display: none;
+}
+
+.addListButton, .addTagButton {
+  font-size: 2.5vw;
+  margin-left: 42%;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.addListButton:hover,
+.addTagButton:hover {
+  font-size: 2.8vw;
+  transition: 0.2s;
+}
+
+.logout {
+  position: absolute;
+  top: 90%;
+  transition: 0.2s;
+  margin-left: 5.1%;
+  color: black;
+  text-decoration: none;
+}
+
+.logout:hover {
+  transition: 0.2s;
+  padding: 0 15px;
+  border-bottom: 2px solid #1B263B;
+}
+
+.switchMenu:checked + .navBar .logout {
+  transition: 0.2s;
+  left: 1.5%;
 }
 
 .switchMenu:checked ~ .navBar {
@@ -41,9 +89,112 @@
 .titleTag {
   margin-top: 6vh;
   margin-left: 25px;
-
 }
 
 .main {
+  color: white;
   flex: 6;
+  height: 100vh;
+  margin-left: 50px;
+  margin-right: 50px;
 }
+
+.listName {
+}
+
+.bodyMain {
+  display: flex;
+  flex-direction: row;
+}
+
+.taskCompleted {
+  background-color: black;
+  flex: 2;
+}
+
+.newTask {
+  flex: 2;
+  background-color: #7e7e7e;
+}
+
+.imgTrash {
+  height: 15px;  cursor: pointer;
+}
+
+.imgTrashH1 {
+  height: 20pt;
+  margin-left: 40px;  cursor: pointer;
+}
+
+
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #1B263B;
+  width: 35px;
+  height: 35px;
+  transition: all 0.3s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  /*color: #1B263B; !* Colore del testo quando il pulsante non è passato sopra *!*/
+  transition: color 0.3s ease;
+  mix-blend-mode: difference;
+  color: white;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #234567;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: #1B263B;
+}
+
+.cta:hover span {
+  color: white; /* Colore del testo quando il pulsante è passato sopra */
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(0.95);
+}
+
+
+.checkboxTask {
+  /*appearance: none; !* Rimuove lo stile di default del browser *!*/
+
+}
+

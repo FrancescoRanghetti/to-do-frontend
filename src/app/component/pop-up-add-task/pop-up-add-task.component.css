@@ -1,0 +1,102 @@
+.containerPopUpTask {
+  border: 1px solid black;
+  position: absolute;
+  height: 30vh;
+  width: 30%;
+  background-color: #dfdfde;
+  top: 15vw;
+  left: 40vw;
+  color: #1B263B;
+}
+
+.close {
+  float: right;
+  margin: 20px 20px 0 0;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.divInput {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.inputTask {
+  width: 40%;
+  border: none;
+  border-bottom: 1px solid #1B263B;
+  border-left: 1px solid #1B263B;
+  outline: none;
+  padding: 6px;
+  background-color: #dfdfde;
+}
+
+.divButton {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.addTaskButton {
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid #1B263B;
+  border-left: 1px solid #1B263B;
+  padding: 6px;
+  transition: 0.2s;
+}
+
+.addTaskButton:hover {
+  transition: 0.2s;
+  color: #dfdfde;
+  background-color: #1B263B;
+  border-bottom: 1px solid #dfdfde;
+  border-left: 1px solid #dfdfde;
+  padding: 10px;
+}
+
+label {
+  padding-right: 10px;
+}
+/* Stile per la select */
+.selectTask {
+  width: 43%;
+  border: none;
+  border-bottom: 1px solid #1B263B;
+  border-left: 1px solid #1B263B;
+  outline: none;
+  padding: 6px;
+  background-color: #dfdfde;
+  appearance: none; /* Rimuove la freccia predefinita di alcuni browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  color: #1B263B;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.selectTask option {
+  background-color: #dfdfde;
+  color: #1B263B;
+}
+
+/* Icona personalizzata per la freccia del select */
+.selectTask::after {
+  content: '▼'; /* Carattere per la freccia */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #1B263B;
+}
+
+.selectWrapper {
+  position: relative;
+  display: inline-block;
+  width: 43%;
+  text-align: center;
+}
