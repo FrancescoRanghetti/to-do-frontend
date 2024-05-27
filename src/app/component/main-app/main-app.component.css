@@ -1,6 +1,5 @@
 .mainContainer {
   background-color: #1B263B;
-  /*height: 100vh;*/
   display: flex;
   flex-direction: row;
   font-size: 12pt;
@@ -108,24 +107,45 @@
 }
 
 .taskCompleted {
-  background-color: black;
   flex: 2;
+  border-left: 1px solid #dfdfde;
 }
 
 .newTask {
+  border-right: 1px solid #dfdfde;
   flex: 2;
-  background-color: #7e7e7e;
+}
+
+.checkboxTask {
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .imgTrash {
-  height: 15px;  cursor: pointer;
+  float: right;
+  margin-right: 50px;
+}
+
+.addTaskButton {
+  text-align: center;
+}
+
+.nameTask {
+  color: #7e7e7e;
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+.imgTrash {
+  height: 15px;
+  cursor: pointer;
 }
 
 .imgTrashH1 {
   height: 20pt;
-  margin-left: 40px;  cursor: pointer;
+  margin-left: 40px;
+  cursor: pointer;
 }
-
 
 .cta {
   position: relative;
@@ -156,7 +176,6 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  /*color: #1B263B; !* Colore del testo quando il pulsante non è passato sopra *!*/
   transition: color 0.3s ease;
   mix-blend-mode: difference;
   color: white;
@@ -181,7 +200,7 @@
 }
 
 .cta:hover span {
-  color: white; /* Colore del testo quando il pulsante è passato sopra */
+  color: white;
 }
 
 .cta:hover svg {

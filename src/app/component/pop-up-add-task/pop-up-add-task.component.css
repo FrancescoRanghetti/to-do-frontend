@@ -100,3 +100,21 @@ label {
   width: 43%;
   text-align: center;
 }
+
+.addTask {
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid #1B263B;
+  border-left: 1px solid #1B263B;
+  padding: 6px;
+  transition: 0.2s;
+}
+
+.addTask:hover {
+  transition: 0.2s;
+  color: #dfdfde;
+  background-color: #1B263B;
+  border-bottom: 1px solid #dfdfde;
+  border-left: 1px solid #dfdfde;
+  padding: 10px;
+}

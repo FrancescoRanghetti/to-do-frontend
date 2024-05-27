@@ -18,6 +18,7 @@ export class AuthenticationComponent {
   protected passwordSign: string = '';
   protected usernameLogin: string = '';
   protected passwordLogin: string = '';
+  protected errorUser: string = '';
 
   constructor(private userService: UserService, private router: Router, private tagService: TagService, private listService: ListService) {
   }
@@ -37,7 +38,7 @@ export class AuthenticationComponent {
       this.userService.getUser(this.usernameSign).subscribe(
         (user) => {
           console.log('User exists:', user);
-          // Gestisci caso utente già esistente
+          this.errorUser = 'User already exist'
         },
         (error) => {
           if (error.status === 404) {
@@ -75,15 +76,20 @@ export class AuthenticationComponent {
 
   loginUser() {
     if (this.usernameLogin != '' && this.passwordLogin != '') {
-      this.userService.loginUser(this.usernameLogin, this.encryptPassword(this.passwordLogin)).pipe().subscribe()
-      this.userService.getUser(this.usernameLogin).subscribe(
-        (user) => {
-          localStorage.setItem("currentIdUser", user.id)
-          console.log("currentIdUser", localStorage.getItem("currentIdUser"))
-        })
-      this.usernameLogin = ''
-      this.passwordLogin = ''
-      this.router.navigate(['/'])
+      this.userService.loginUser(this.usernameLogin, this.encryptPassword(this.passwordLogin)).pipe().subscribe((boh: any) => {
+        if (boh) {
+          this.userService.getUser(this.usernameLogin).subscribe(
+            (user) => {
+              localStorage.setItem("currentIdUser", user.id)
+              console.log("currentIdUser", localStorage.getItem("currentIdUser"))
+            })
+          this.usernameLogin = ''
+          this.passwordLogin = ''
+          localStorage.setItem("login", "done")
+          this.router.navigate(['/'])
+        }
+      })
+      this.errorUser = 'Credential incorrect'
     }
   }
 

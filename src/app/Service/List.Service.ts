@@ -29,7 +29,7 @@ export class ListService {
     return this.http.delete(`${this.apiUrl}/deleteList/${name}/${idUser}`)
   }
 
-  getIdListByName(name: string, idUser: number) {
-    return this.http.get(`${this.apiUrl}/getIdListByName/${name}/${idUser}`)
+  getIdListByName(name: string, idUser: number) : Observable<List> {
+    return this.http.get<List>(`${this.apiUrl}/getIdListByName/${name}/${idUser}`)
   }
 }

@@ -5,6 +5,7 @@ import {TagService} from "../../Service/Tag.service";
 import {Tag} from "../../Interfaces/Tag";
 import {TaskService} from "../../Service/Task.service";
 import {Task} from "../../Interfaces/Task";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-app',
@@ -24,10 +25,13 @@ export class MainAppComponent implements OnInit {
   protected seeAddTask: boolean = false;
 
 
-  constructor(private listSerivce: ListService, private tagService: TagService, private taskSerivce: TaskService) {
+  constructor(private listSerivce: ListService, private tagService: TagService, private taskSerivce: TaskService, private router: Router) {
   }
 
   ngOnInit(): void {
+    if (!(localStorage.getItem("login") == 'done')) {
+      this.router.navigate(['/welcome'])
+    }
     let currentIdUser: string | null = localStorage.getItem("currentIdUser");
     this.listSerivce.getAllList(Number(currentIdUser)).pipe().subscribe((list: List[]) => {
       // @ts-ignore
@@ -100,12 +104,59 @@ export class MainAppComponent implements OnInit {
     return 'Tag not found'
   }
 
-  deleteTask() {
+  deleteTask(idTask?: number) {
+    // @ts-ignore
+    this.taskSerivce.deleteTask(idTask).pipe().subscribe()
+    this.ngOnInit()
+  }
 
+  deleteTag(nameTag: string) {
+    this.tagService.deleteTag(Number(localStorage.getItem("currentIdUser")), nameTag).pipe().subscribe()
+    this.ngOnInit()
+    this.ngOnInit()
   }
 
   deleteList(name: string) {
+    let idList;
+    this.listSerivce.getIdListByName(name, Number(localStorage.getItem("currentIdUser"))).pipe().subscribe((list: List) => {
+      idList = list.id
+    })
+    console.log("idlist: "+idList)
+    // @ts-ignore
+    this.taskSerivce.getAllNoCompleteTask(Number(localStorage.getItem("currentIdUser")), idList).pipe().subscribe((task: Task[]) => {
+      console.log(task)
+      this.taskNotCompletedArray = task;
+    })
 
+    // @ts-ignore
+    this.taskSerivce.getAllCompleteTask(Number(localStorage.getItem("currentIdUser")), idList).pipe().subscribe((task: Task[]) => {
+      console.log(task)
+      this.taskCompletedArray = task;
+    })
+    console.log("this.taskCompletedArray: " + this.taskCompletedArray)
+    console.log("this.taskNotCompletedArray: " + this.taskNotCompletedArray)
+    for (let i = 0; i < this.taskCompletedArray.length; i++) {
+      // @ts-ignore
+      if (this.taskCompletedArray.at(i).idList == idList) {
+        // @ts-ignore
+        console.log("this.taskCompletedArray.at(i).name" + this.taskCompletedArray.at(i).name)
+        // @ts-ignore
+        this.taskSerivce.deleteTask(this.taskCompletedArray.at(i).id)
+      }
+    }
+    for (let i = 0; i < this.taskNotCompletedArray.length; i++) {
+      console.log("invece entra qua: " + this.taskNotCompletedArray.at(i))
+      // @ts-ignore
+      if (this.taskNotCompletedArray.at(i).idList == idList) {
+        console.log("entra qua")
+        // @ts-ignore
+        this.taskSerivce.deleteTask(this.taskNotCompletedArray.at(i).id)
+      }
+    }
+    this.listSerivce.deleteList(name, Number(localStorage.getItem("currentIdUser"))).pipe().subscribe(() => {
+      localStorage.setItem("localList", 'Select a list')
+      this.ngOnInit()
+    })
   }
 
 
@@ -152,5 +203,10 @@ export class MainAppComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  logout(){
+    localStorage.setItem("login", "not")
+    this.router.navigate(['/welcome'])
   }
 }

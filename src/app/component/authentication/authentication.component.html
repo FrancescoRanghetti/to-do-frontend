@@ -7,9 +7,12 @@
         <span class="card-side"></span>
         <div class="flip-card__inner">
           <div class="flip-card__front">
-            <div class="title">Log in</div>
+            <div class="title">Log in{{errorUser == ''}}</div>
             <input type="text" placeholder="Username" name="username" class="flip-card__input" [(ngModel)]="usernameLogin">
             <input type="password" placeholder="Password" name="password" class="flip-card__input" [(ngModel)]="passwordLogin">
+            <div *ngIf="errorUser" style="color: red">
+              {{errorUser}}
+            </div>
             <button class="flip-card__btn" (click)="loginUser()">Let`s go!</button>
           </div>
           <div class="flip-card__back">
@@ -18,6 +21,9 @@
             <input type="text" placeholder="Last name" name="lastName" class="flip-card__input" [(ngModel)]="lastNameSign">
             <input type="text" placeholder="Username" name="username" class="flip-card__input" [(ngModel)]="usernameSign">
             <input type="password" placeholder="Password" name="password" class="flip-card__input" [(ngModel)]="passwordSign">
+            <div *ngIf="errorUser" style="color: red">
+              {{errorUser}}
+            </div>
             <button class="flip-card__btn" (click)="registerUser()">Confirm!</button>
           </div>
         </div>
