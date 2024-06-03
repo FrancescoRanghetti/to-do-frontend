@@ -98,9 +98,6 @@
   margin-right: 50px;
 }
 
-.listName {
-}
-
 .bodyMain {
   display: flex;
   flex-direction: row;
@@ -210,10 +207,3 @@
 .cta:active {
   transform: scale(0.95);
 }
-
-
-.checkboxTask {
-  /*appearance: none; !* Rimuove lo stile di default del browser *!*/
-
-}
-

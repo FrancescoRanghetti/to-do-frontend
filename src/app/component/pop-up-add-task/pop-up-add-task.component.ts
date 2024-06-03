@@ -45,7 +45,6 @@ export class PopUpAddTaskComponent implements OnInit {
       console.log(idList[0].id)
       idListCurrentList = idList[0].id;
       if (this.nameNewTask != '') {
-        // const task: Task = (this.nameNewTask, this.descriptionNewTask, false, Number(this.currentIdUser), this.tagNewTask, 5)
         let newTask: Task = {
           name: this.nameNewTask,
           description: this.descriptionNewTask,
@@ -56,19 +55,14 @@ export class PopUpAddTaskComponent implements OnInit {
         }
         this.taskService.createTask(newTask).pipe().subscribe({
           next: (createdTask: Task) => {
-            console.log('Task creato con successo:', createdTask);
             this.mainApp.ngOnInit()
             this.close()
           },
           error: (error) => {
-            console.error('Errore nella creazione del task:', error);
+            console.error('Error: ', error);
           }
         });
       }
     })
-
-    console.log("this.name " + this.nameNewTask)
-    console.log(this.descriptionNewTask)
-    console.log(this.tagNewTask)
   }
 }

@@ -27,15 +27,13 @@ export class PopUpAddListComponent {
     if (this.nameNewList != '') {
       this.listService.addList(this.nameNewList, Number(this.currentIdUser)).pipe().subscribe({
         next: (createdList: List) => {
-          console.log('Task creato con successo:', createdList);
           this.mainApp.ngOnInit()
           this.close()
         },
         error: (error) => {
-          console.error('Errore nella creazione del task:', error);
+          console.error('Error:', error);
         }
       })
     }
   }
-
 }

@@ -26,12 +26,11 @@ export class PopUpAddTagComponent {
     if (this.nameNewTag != '') {
       this.tagService.addTagByIdUser(this.nameNewTag, Number(this.currentIdUser)).pipe().subscribe({
         next: (createdTag: Tag) => {
-          console.log('Task creato con successo:', createdTag);
           this.mainApp.ngOnInit()
           this.close()
         },
         error: (error) => {
-          console.error('Errore nella creazione del task:', error);
+          console.error('Error:', error);
         }
       })
     }

@@ -24,17 +24,7 @@ export class AuthenticationComponent {
   }
 
   registerUser() {
-    // console.log("entra")
-    // if (this.nameSign != '' && this.lastNameSign != '' && this.usernameSign != '' && this.passwordSign != '') {
-    //   console.log("get" + this.getUser(this.usernameSign))
-    //   console.log(this.nameSign)
-    //   console.log(this.lastNameSign)
-    //   console.log(this.usernameSign)
-    //   console.log(this.passwordSign)
-    //   this.userService.addUser(this.nameSign, this.lastNameSign, this.usernameSign, this.encryptPassword(this.passwordSign)).pipe().subscribe()
-    // }
     if (this.nameSign !== '' && this.lastNameSign !== '' && this.usernameSign !== '' && this.passwordSign !== '') {
-      console.log("entra")
       this.userService.getUser(this.usernameSign).subscribe(
         (user) => {
           console.log('User exists:', user);
@@ -48,7 +38,6 @@ export class AuthenticationComponent {
                 this.userService.getUser(this.usernameSign).subscribe(
                   (user) => {
                     localStorage.setItem("currentIdUser", user.id)
-                    console.log("currentIdUser", localStorage.getItem("currentIdUser"))
                     this.tagService.createDefaultTag(user.id).pipe().subscribe()
                     this.listService.createDefaultList(user.id).pipe().subscribe()
                   })
@@ -70,18 +59,13 @@ export class AuthenticationComponent {
     }
   }
 
-  getUser(username: string) {
-    this.userService.getUser(username).pipe().subscribe();
-  }
-
   loginUser() {
     if (this.usernameLogin != '' && this.passwordLogin != '') {
-      this.userService.loginUser(this.usernameLogin, this.encryptPassword(this.passwordLogin)).pipe().subscribe((boh: any) => {
-        if (boh) {
+      this.userService.loginUser(this.usernameLogin, this.encryptPassword(this.passwordLogin)).pipe().subscribe((loginSuccess: any) => {
+        if (loginSuccess) {
           this.userService.getUser(this.usernameLogin).subscribe(
             (user) => {
               localStorage.setItem("currentIdUser", user.id)
-              console.log("currentIdUser", localStorage.getItem("currentIdUser"))
             })
           this.usernameLogin = ''
           this.passwordLogin = ''

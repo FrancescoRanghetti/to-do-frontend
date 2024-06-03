@@ -45,17 +45,12 @@ export class MainAppComponent implements OnInit {
 
     // @ts-ignore
     this.listSerivce.getIdListByName(localStorage.getItem("localList").toString(), Number(currentIdUser)).pipe().subscribe((idList: List[]) => {
-      console.log(idList[0].id)
       // @ts-ignore
-      console.log(localStorage.getItem("localList").toString())
-      console.log(Number(currentIdUser))
       this.taskSerivce.getAllNoCompleteTask(Number(currentIdUser), idList[0].id).pipe().subscribe((task: Task[]) => {
-        console.log(task)
         this.taskNotCompletedArray = task;
       })
 
       this.taskSerivce.getAllCompleteTask(Number(currentIdUser), idList[0].id).pipe().subscribe((task: Task[]) => {
-        console.log(task)
         this.taskCompletedArray = task;
       })
     })
@@ -121,34 +116,25 @@ export class MainAppComponent implements OnInit {
     this.listSerivce.getIdListByName(name, Number(localStorage.getItem("currentIdUser"))).pipe().subscribe((list: List) => {
       idList = list.id
     })
-    console.log("idlist: "+idList)
     // @ts-ignore
     this.taskSerivce.getAllNoCompleteTask(Number(localStorage.getItem("currentIdUser")), idList).pipe().subscribe((task: Task[]) => {
-      console.log(task)
       this.taskNotCompletedArray = task;
     })
 
     // @ts-ignore
     this.taskSerivce.getAllCompleteTask(Number(localStorage.getItem("currentIdUser")), idList).pipe().subscribe((task: Task[]) => {
-      console.log(task)
       this.taskCompletedArray = task;
     })
-    console.log("this.taskCompletedArray: " + this.taskCompletedArray)
-    console.log("this.taskNotCompletedArray: " + this.taskNotCompletedArray)
     for (let i = 0; i < this.taskCompletedArray.length; i++) {
       // @ts-ignore
       if (this.taskCompletedArray.at(i).idList == idList) {
-        // @ts-ignore
-        console.log("this.taskCompletedArray.at(i).name" + this.taskCompletedArray.at(i).name)
         // @ts-ignore
         this.taskSerivce.deleteTask(this.taskCompletedArray.at(i).id)
       }
     }
     for (let i = 0; i < this.taskNotCompletedArray.length; i++) {
-      console.log("invece entra qua: " + this.taskNotCompletedArray.at(i))
       // @ts-ignore
       if (this.taskNotCompletedArray.at(i).idList == idList) {
-        console.log("entra qua")
         // @ts-ignore
         this.taskSerivce.deleteTask(this.taskNotCompletedArray.at(i).id)
       }
@@ -161,11 +147,8 @@ export class MainAppComponent implements OnInit {
 
 
   seePopUpAddList(): boolean {
-    console.log("this.seeAddList: " + this.seeAddList)
-    console.log("entra")
     if (!this.seeAddList) {
       this.seeAddList = true;
-      console.log("this.seeAddList: " + this.seeAddList)
       return true;
     }
     return false;
@@ -184,22 +167,16 @@ export class MainAppComponent implements OnInit {
   }
 
   seePopUpAddTag() {
-    console.log("this.seeAddTag: " + this.seeAddTag)
-    console.log("entra")
     if (!this.seeAddTag) {
       this.seeAddTag = true;
-      console.log("this.seeAddTag: " + this.seeAddTag)
       return true;
     }
     return false;
   }
 
   seePopUpAddTask() {
-    console.log("this.seeAddTask: " + this.seeAddTask)
-    console.log("entra")
     if (!this.seeAddTask) {
       this.seeAddTask = true;
-      console.log("this.seeAddTask: " + this.seeAddTask)
       return true;
     }
     return false;
